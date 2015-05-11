@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uexplugins>
+    <plugin
+        uexName="uexSegmentControl" version="3.0.2" build="2">
+        <info>2:按要求修改结构布局</info>
+        <build>1:修改资源图片不显示问题，适配iOS5以上的版本</build>
+        <build>0:uexSegmentControl插件实现分段控制器功能</build>
+    </plugin>
+</uexplugins>

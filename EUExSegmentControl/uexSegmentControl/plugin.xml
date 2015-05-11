@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uexplugins>
+    <plugin name="uexSegmentControl">
+        <method name="open"></method>
+        <method name="close"></method>
+        <method name="setData"></method>
+        <method name="setCurrentItem"></method>
+    </plugin>
+</uexplugins>
