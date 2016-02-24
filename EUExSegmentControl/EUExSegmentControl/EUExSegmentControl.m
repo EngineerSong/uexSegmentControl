@@ -35,10 +35,11 @@
     
     //选择的回调
     self.conditionBar.callBackBlock = ^(NSMutableDictionary *callBackDate){
-    
-        NSLog(@"%@",[callBackDate JSONRepresentation]);
-        
-        [super jsSuccessWithName:@"uexSegmentControl.onItemClick" opId:0 dataType:0 strData:[callBackDate JSONRepresentation]];
+        //[super jsSuccessWithName:@"uexSegmentControl.onItemClick" opId:0 dataType:0 strData:[callBackDate JSONRepresentation]];
+        if(callBackDate){
+            NSString *jsonStr = [NSString stringWithFormat:@"if(uexSegmentControl.onItemClick != null){uexSegmentControl.onItemClick('%@','%@');}",[callBackDate objectForKey:@"i"],[callBackDate objectForKey:@"title"]];
+            [EUtility brwView:meBrwView evaluateScript:jsonStr];
+        }
     };
     
     [EUtility brwView:self.meBrwView addSubview:self.conditionBar];
