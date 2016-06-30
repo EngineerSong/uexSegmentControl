@@ -40,23 +40,25 @@
 -(void)makeMainContent
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    
-//    NSString *plistPath1 = [[NSBundle mainBundle] pathForResource:@"properties" ofType:@"plist"];
-//    NSMutableArray *listArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath1];
+     
     NSMutableArray *listArray = [[NSMutableArray alloc] init];
-    listArray = [defaults objectForKey:@"array1"];
     
-//    NSString *plistPath2 = [[NSBundle mainBundle] pathForResource:@"otherProperties" ofType:@"plist"];
-//    NSArray *otherValues = [[NSArray alloc] initWithContentsOfFile:plistPath2];
+    listArray = [defaults objectForKey:@"showData"];
+    
     NSArray *otherValues = [[NSArray alloc] init];
-    otherValues = [defaults objectForKey:@"array2"];
+    otherValues = [defaults objectForKey:@"allData"];
     
     //点击添加频道的label和他的背景色
     UIView *bg_view = [[UIView alloc] initWithFrame:CGRectMake(0,20+45*((listArray.count -1)/4+1),BYScreenWidth, 30)];
     bg_view.backgroundColor = Color_maingray;
     UILabel *morevalue_label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 100, 30)];
-    morevalue_label.text = @"点击添加频道";
+    if ([defaults objectForKey:@"addLable"] !=nil) {
+        morevalue_label.text = [NSString stringWithFormat:@"%@",[defaults objectForKey:@"addLable"]];
+    }
+    else
+    {
+        morevalue_label.text = @"点击添加频道";
+    }
     morevalue_label.backgroundColor = [UIColor clearColor];
     morevalue_label.font = [UIFont systemFontOfSize:14];
     [bg_view addSubview:morevalue_label];
@@ -89,9 +91,8 @@
         [self addSubview:view];
     }
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSInteger y = [[userDefaults objectForKey:@"y"] integerValue];
+    NSInteger y = [[userDefaults objectForKey:@"top"] integerValue];
     self.contentSize = CGSizeMake(BYScreenWidth, CGRectGetMaxY(bg_view.frame)+y+20+45*((num2-1)/4+1) + 50);
-
+    _listArray = listArray;
 }
-
 @end
