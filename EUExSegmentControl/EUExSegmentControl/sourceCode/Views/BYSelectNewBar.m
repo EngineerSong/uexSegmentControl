@@ -31,22 +31,30 @@
 {
     self.backgroundColor = Color_maingray;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 60, 30)];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, (self.frame.size.height- 30)/2, 60, 30)];
     label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor blackColor];
-    label.text = @"我的频道";
+    if ([user objectForKey:@"showedLable"]) {
+        label.text = [NSString stringWithFormat:@"%@",[user objectForKey:@"showedLable"]];
+    }
+    else
+    {
+        label.text = @"我的频道";
+    }
     label.backgroundColor = [UIColor clearColor];
     [self addSubview:label];
     
     sublabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame)+10,10, 100, 11)];
-    sublabel.font = [UIFont systemFontOfSize:11];
+    sublabel.font = [UIFont systemFontOfSize:14];
     sublabel.text = @"拖拽可以编辑";
     sublabel.textColor = sublabel_gray;
     sublabel.backgroundColor = [UIColor clearColor];
     sublabel.hidden = YES;
     [self addSubview:sublabel];
     
-    button = [[UIButton alloc] initWithFrame:CGRectMake(BYScreenWidth-100, 5, 50, 20)];
+    button = [[UIButton alloc] initWithFrame:CGRectMake(BYScreenWidth-100, (self.frame.size.height - 20)/2, 50, 20)];
     [button setTitle:@"编辑" forState:0];
     [button setTitleColor:[UIColor redColor] forState:0];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
