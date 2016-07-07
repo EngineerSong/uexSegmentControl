@@ -12,6 +12,9 @@
 
 
 @implementation SelectionButton
+
+@synthesize changeImage;
+
 -(UIImage *)getImageFromLocalFile:(NSString*)imageName{
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"png"]];
 }
@@ -23,17 +26,24 @@
  ******************************/
 - (instancetype)initWithFrame:(CGRect)frame
 {
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    
+    
     self = [super initWithFrame:frame];
     if (self) {
-        [self setImage:[self getImageFromLocalFile:@"uexSegmentControl/Arrow"] forState:0];
-        [self setImage:[self getImageFromLocalFile:@"uexSegmentControl/Arrow"] forState:1<<0];
-
-//        [self setImage:[UIImage imageNamed:@"Arrow.png"] forState:0];
-//        [self setImage:[UIImage imageNamed:@"Arrow.png"] forState:1<<0];
+        if ([user objectForKey:@"expandOpenIcon"] != nil) {
+            NSString *btnIconUp = [NSString stringWithFormat:@"%@",[user objectForKey:@"expandOpenIcon"]];
+            [self setImage:[UIImage imageWithContentsOfFile:btnIconUp] forState:0];
+        }
+        else{
+            [self setImage:[self getImageFromLocalFile:@"uexSegmentControl/Arrow"] forState:0];
+            [self setImage:[self getImageFromLocalFile:@"uexSegmentControl/Arrow"] forState:1<<0];
+        }
+        changeImage = NO;
         self.backgroundColor = Color_maingray;
         [self addTarget:self
                  action:@selector(ArrowClick)
-       forControlEvents:1 << 6];
+       forControlEvents:UIControlEventTouchUpInside];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(ArrowClick)
                                                      name:@"arrow_change"
@@ -43,22 +53,46 @@
 }
 
 -(void)ArrowClick{
-//    self.Newbar.hidden = (self.Detail.frame.origin.y<0)?NO:YES;
     self.Newbar.hidden = (self.Detail.frame.origin.y>=BYScreenHeight)?NO:YES;
-
-    [UIView animateWithDuration:arrow_animation_time animations:^{
-        CGAffineTransform rotation = self.imageView.transform;
-        self.imageView.transform = CGAffineTransformRotate(rotation,M_PI);
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSInteger y = [[userDefaults objectForKey:@"y"] integerValue];
-//        self.Detail.transform = (self.Detail.frame.origin.y<0)?CGAffineTransformMakeTranslation(0, BYScreenHeight+y ):CGAffineTransformMakeTranslation(0, -BYScreenHeight-y);
-        self.Detail.transform = (self.Detail.frame.origin.y>= BYScreenHeight)?CGAffineTransformMakeTranslation(0, -BYScreenHeight + y +conditionScrollH  ):CGAffineTransformMakeTranslation(0, BYScreenHeight);
-    }];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    打开详情栏
+    if (!changeImage) {
+        if ([userDefaults objectForKey:@"expandCloseIcon"] != nil) {
+            NSString *btnIConDown = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"expandCloseIcon"]];
+            [self setImage:[UIImage imageWithContentsOfFile:btnIConDown] forState:0];
+        }
+        else
+        {
+            [UIView animateWithDuration:arrow_animation_time animations:^{
+                CGAffineTransform rotation = self.imageView.transform;
+                self.imageView.transform = CGAffineTransformRotate(rotation,M_PI);
+            }];
+        }
+        
+        changeImage = YES;
+    }
+    else
+    {
+        if ([userDefaults objectForKey:@"expandOpenIcon"] != nil) {
+            NSString *btnIconUp = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"expandOpenIcon"]];
+            [self setImage:[UIImage imageWithContentsOfFile:btnIconUp] forState:0];
+        }
+        else
+        {
+                [UIView animateWithDuration:arrow_animation_time animations:^{
+                    CGAffineTransform rotation = self.imageView.transform;
+                    self.imageView.transform = CGAffineTransformRotate(rotation,M_PI);
+                }];
+        }
+        changeImage = NO;
+    }
+    NSInteger y = [[userDefaults objectForKey:@"top"] integerValue];
+    self.Detail.transform = (self.Detail.frame.origin.y>= BYScreenHeight)?CGAffineTransformMakeTranslation(0, -BYScreenHeight + y +self.frame.size.height):CGAffineTransformMakeTranslation(0, BYScreenHeight);
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect{
     CGFloat image_width = 18;
-    return CGRectMake((contentRect.size.width-image_width)/2, (conditionScrollH-image_width)/2, image_width, image_width);
+    return CGRectMake((contentRect.size.width-image_width)/2, (self.frame.size.height-image_width)/2, image_width, image_width);
 }
 
 @end

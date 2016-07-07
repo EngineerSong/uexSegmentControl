@@ -20,7 +20,11 @@
     self.longGesture.allowableMovement = 20;
     self.longGesture.numberOfTouchesRequired = 1;
     [self addGestureRecognizer:self.longGesture];
-    self.isEqualFirst = [title isEqualToString:@"头条"];
+//    栏目第一个初始化颜色为红色
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString *firstTitle = [NSString stringWithFormat:@"%@",[[user objectForKey:@"showData"] objectAtIndex:0]];
+
+    self.isEqualFirst = [title isEqualToString:firstTitle];
     [self setTitle:title forState:0];
     [self setTitleColor:Color_gray forState:0];
     if (self.isEqualFirst) {
@@ -181,7 +185,17 @@
         }
         else if (self.tag == 0)
         {
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
+            if (views1.count > [maxShow intValue] -1) {
+                NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+                return;
+            }
+            
             [self changeView2toView1];
+          
         }
     }
 }
@@ -211,9 +225,21 @@
             [self changeView1toView2];
         }
         else if (self.tag == 0) {
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
+
+            if (views1.count > [maxShow intValue] -1) {
+                NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+                return;
+            }
+            
             self.delete_btn.hidden = NO;
             [self addGestureRecognizer:self.gesture];
             [self changeView2toView1];
+            
+
         }
     }
 }
@@ -235,12 +261,12 @@
     center.y += translation.y;
     pan.view.center = center;
     [pan setTranslation:CGPointZero inView:pan.view];
-    
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
         {
             CGRect self_frame = self.frame;
             [self setFrame:CGRectMake(self_frame.origin.x-view_addWith, self_frame.origin.y-view_addWith, self_frame.size.width+view_addWith*2, self_frame.size.height+view_addWith*2)];
+            
         }
             break;
         case UIGestureRecognizerStateChanged:
@@ -248,32 +274,42 @@
             BOOL isInArea1 = [self whetherInAreaWithArray:views1 Point:center];
             
             if (isInArea1) {
-                NSInteger indexX = (center.x <= view_width+40)? 0 : (center.x - view_width-40)/(20+view_width) + 1;
+                NSInteger indexX = (center.x <= view_width+40)? 0 : (center.x - view_width)/(20+view_width) +1;
                 NSInteger indexY = (center.y <= 65)? 0 : (center.y - 65)/45 + 1;
                 NSInteger index = indexX + indexY*4;
                 index = (index == 0)? 1:index;
                 [views_array removeObject:self];
                 [views1 insertObject:self atIndex:index];
+                NSLog(@"index  %ld",(long)index);
                 views_array = views1;
                 [self animationForView1];
                 self.operations(@"switch_position",self.titleLabel.text,(int)index);
                 
             }
-            else if (!isInArea1 && center.y < [self array1MaxY]+50) {
-                [views_array removeObject:self];
-                [views1 insertObject:self atIndex:views1.count];
-                views_array = views1;
-                [self animationForView1];
-                self.operations(@"move_itemToLast",self.titleLabel.text,0);
-                
-            }
-            else if (center.y > [self array1MaxY]+50){
-                [self changeView1toView2];
+            else
+            {
+               [self changeView1toView2];
             }
         }
             break;
         case UIGestureRecognizerStateEnded:
-            [self animationActionFinal];
+        {
+             [self animationActionFinal];
+//            获取移动后的位置index
+            BOOL isInArea1 = [self whetherInAreaWithArray:views1 Point:center];
+            
+            if (isInArea1) {
+                NSInteger indexX = (center.x <= view_width+40)? 0 : (center.x - view_width-40)/(20+view_width) + 1;
+                NSInteger indexY = (center.y <= 65)? 0 : (center.y - 65)/45 + 1;
+                NSInteger index = indexX + indexY*4;
+                index = (index == 0)? 1:index;
+                NSLog(@"%ld",(long)index);
+                self.operations(@"move_itemToLast",self.titleLabel.text,(int)index);
+               }
+             
+            }
+            
+           
             break;
         default:
             break;

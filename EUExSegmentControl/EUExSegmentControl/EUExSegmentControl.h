@@ -14,10 +14,13 @@
 #import "SelectionButton.h"
 #import "BYSelectionDetails.h"
 #import "BYSelectNewBar.h"
+#import "BYSelectionView.h"
+
 @interface EUExSegmentControl : EUExBase
 @property (nonatomic , retain) BYConditionBar *conditionBar;
 @property (nonatomic , retain) BYSelectNewBar *selection_newBar;
 @property (nonatomic , retain) BYSelectionDetails *selection_details ;
 @property (nonatomic , retain) SelectionButton *arrow;
-
+@property (nonatomic , retain) BYSelectionView  *selectionView;
+@property (nonatomic , strong) NSString *isShow;
 @end

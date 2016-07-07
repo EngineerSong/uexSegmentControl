@@ -12,5 +12,5 @@
 -(void)makeMainContent;
 @property (nonatomic,strong) NSMutableArray *views1;
 @property (nonatomic,strong) NSMutableArray *views2;
-
+@property (nonatomic,strong) NSMutableArray *listArray;
 @end
