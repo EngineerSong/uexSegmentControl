@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "EUExBase.h"
-#import "JSON.h"
+#import <AppCanKit/AppCanKit.h>
 #import "BYConditionBar.h"
 #import "SelectionButton.h"
 #import "BYSelectionDetails.h"
@@ -17,10 +16,10 @@
 #import "BYSelectionView.h"
 
 @interface EUExSegmentControl : EUExBase
-@property (nonatomic , retain) BYConditionBar *conditionBar;
-@property (nonatomic , retain) BYSelectNewBar *selection_newBar;
-@property (nonatomic , retain) BYSelectionDetails *selection_details ;
-@property (nonatomic , retain) SelectionButton *arrow;
-@property (nonatomic , retain) BYSelectionView  *selectionView;
-@property (nonatomic , strong) NSString *isShow;
+@property (nonatomic , strong) BYConditionBar *conditionBar;
+@property (nonatomic , strong) BYSelectNewBar *selection_newBar;
+@property (nonatomic , strong) BYSelectionDetails *selection_details ;
+@property (nonatomic , strong) SelectionButton *arrow;
+@property (nonatomic , strong) BYSelectionView  *selectionView;
+
 @end

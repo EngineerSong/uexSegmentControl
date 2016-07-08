@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CDA84FD1A806ED3001B6539 /* BYConditionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F21A806ED3001B6539 /* BYConditionBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA84FE1A806ED3001B6539 /* BYSelectionDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F41A806ED3001B6539 /* BYSelectionDetails.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA84FF1A806ED3001B6539 /* BYSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F61A806ED3001B6539 /* BYSelectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA85001A806ED3001B6539 /* BYSelectNewBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F81A806ED3001B6539 /* BYSelectNewBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA85011A806ED3001B6539 /* SelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84FC1A806ED3001B6539 /* SelectionButton.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3CDA84FD1A806ED3001B6539 /* BYConditionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F21A806ED3001B6539 /* BYConditionBar.m */; };
+		3CDA84FE1A806ED3001B6539 /* BYSelectionDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F41A806ED3001B6539 /* BYSelectionDetails.m */; };
+		3CDA84FF1A806ED3001B6539 /* BYSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F61A806ED3001B6539 /* BYSelectionView.m */; };
+		3CDA85001A806ED3001B6539 /* BYSelectNewBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F81A806ED3001B6539 /* BYSelectNewBar.m */; };
+		3CDA85011A806ED3001B6539 /* SelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84FC1A806ED3001B6539 /* SelectionButton.m */; };
 		3CF52FA51A7F0946008F29C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF52FA41A7F0946008F29C1 /* Foundation.framework */; };
 		3CF52FAC1A7F0946008F29C1 /* EUExSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF52FAB1A7F0946008F29C1 /* EUExSegmentControl.m */; };
+		42F36B121D24C02F00EC1F36 /* AppCanKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F36B111D24C02F00EC1F36 /* AppCanKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,15 +31,6 @@
 
 /* Begin PBXFileReference section */
 		3C571FE01A85EB9200656C07 /* EUExSegmentControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EUExSegmentControl.h; sourceTree = "<group>"; };
-		3CDA84E71A806ED3001B6539 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		3CDA84E81A806ED3001B6539 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
-		3CDA84E91A806ED3001B6539 /* MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Digest.h; sourceTree = "<group>"; };
-		3CDA84EA1A806ED3001B6539 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		3CDA84EB1A806ED3001B6539 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		3CDA84EC1A806ED3001B6539 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		3CDA84ED1A806ED3001B6539 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		3CDA84EE1A806ED3001B6539 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		3CDA84EF1A806ED3001B6539 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		3CDA84F11A806ED3001B6539 /* BYConditionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYConditionBar.h; sourceTree = "<group>"; };
 		3CDA84F21A806ED3001B6539 /* BYConditionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYConditionBar.m; sourceTree = "<group>"; };
 		3CDA84F31A806ED3001B6539 /* BYSelectionDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BYSelectionDetails.h; sourceTree = "<group>"; };
@@ -49,12 +41,6 @@
 		3CDA84F81A806ED3001B6539 /* BYSelectNewBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BYSelectNewBar.m; sourceTree = "<group>"; };
 		3CDA84FB1A806ED3001B6539 /* SelectionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionButton.h; sourceTree = "<group>"; };
 		3CDA84FC1A806ED3001B6539 /* SelectionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionButton.m; sourceTree = "<group>"; };
-		3CEDD47C1C7D5B18008A6759 /* EUExBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EUExBase.h; sourceTree = "<group>"; };
-		3CEDD47D1C7D5B18008A6759 /* EUExBase+Bundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EUExBase+Bundle.h"; sourceTree = "<group>"; };
-		3CEDD47E1C7D5B18008A6759 /* EUExBaseDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EUExBaseDefine.h; sourceTree = "<group>"; };
-		3CEDD47F1C7D5B18008A6759 /* EUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EUtility.h; sourceTree = "<group>"; };
-		3CEDD4801C7D5B18008A6759 /* JSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		3CEDD4811C7D5B18008A6759 /* WidgetOneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetOneDelegate.h; sourceTree = "<group>"; };
 		3CF52FA11A7F0946008F29C1 /* libuexSegmentControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuexSegmentControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF52FA41A7F0946008F29C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CF52FA81A7F0946008F29C1 /* EUExSegmentControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EUExSegmentControl-Prefix.pch"; sourceTree = "<group>"; };
@@ -62,6 +48,7 @@
 		3CF52FB21A7F0946008F29C1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3CF52FB51A7F0946008F29C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		3CF52FFF1A7F170E008F29C1 /* DY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DY.h; sourceTree = "<group>"; };
+		42F36B111D24C02F00EC1F36 /* AppCanKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCanKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F36B121D24C02F00EC1F36 /* AppCanKit.framework in Frameworks */,
 				3CF52FA51A7F0946008F29C1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,26 +67,9 @@
 		3CDA84E51A806ED3001B6539 /* sourceCode */ = {
 			isa = PBXGroup;
 			children = (
-				3CDA84E61A806ED3001B6539 /* JSON */,
 				3CDA84F01A806ED3001B6539 /* Views */,
 			);
 			path = sourceCode;
-			sourceTree = "<group>";
-		};
-		3CDA84E61A806ED3001B6539 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				3CDA84E71A806ED3001B6539 /* JSON.h */,
-				3CDA84E81A806ED3001B6539 /* JSONParser.h */,
-				3CDA84E91A806ED3001B6539 /* MD5Digest.h */,
-				3CDA84EA1A806ED3001B6539 /* NSObject+SBJSON.h */,
-				3CDA84EB1A806ED3001B6539 /* NSString+SBJSON.h */,
-				3CDA84EC1A806ED3001B6539 /* SBJSON.h */,
-				3CDA84ED1A806ED3001B6539 /* SBJsonBase.h */,
-				3CDA84EE1A806ED3001B6539 /* SBJsonParser.h */,
-				3CDA84EF1A806ED3001B6539 /* SBJsonWriter.h */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 		3CDA84F01A806ED3001B6539 /* Views */ = {
@@ -148,9 +119,9 @@
 		3CF52FA61A7F0946008F29C1 /* EUExSegmentControl */ = {
 			isa = PBXGroup;
 			children = (
-				3CF52FCA1A7F0A2D008F29C1 /* engineHeader */,
-				3CF52FAB1A7F0946008F29C1 /* EUExSegmentControl.m */,
+				42F36B111D24C02F00EC1F36 /* AppCanKit.framework */,
 				3C571FE01A85EB9200656C07 /* EUExSegmentControl.h */,
+				3CF52FAB1A7F0946008F29C1 /* EUExSegmentControl.m */,
 				3CDA84E51A806ED3001B6539 /* sourceCode */,
 				3CF52FFF1A7F170E008F29C1 /* DY.h */,
 				3CF52FA71A7F0946008F29C1 /* Supporting Files */,
@@ -164,19 +135,6 @@
 				3CF52FA81A7F0946008F29C1 /* EUExSegmentControl-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3CF52FCA1A7F0A2D008F29C1 /* engineHeader */ = {
-			isa = PBXGroup;
-			children = (
-				3CEDD47C1C7D5B18008A6759 /* EUExBase.h */,
-				3CEDD47D1C7D5B18008A6759 /* EUExBase+Bundle.h */,
-				3CEDD47E1C7D5B18008A6759 /* EUExBaseDefine.h */,
-				3CEDD47F1C7D5B18008A6759 /* EUtility.h */,
-				3CEDD4801C7D5B18008A6759 /* JSON.h */,
-				3CEDD4811C7D5B18008A6759 /* WidgetOneDelegate.h */,
-			);
-			path = engineHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,9 +271,13 @@
 		3CF52FC51A7F0947008F29C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/uexSegmentControl/";
 				DSTROOT = /tmp/EUExSegmentControl.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EUExSegmentControl",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/EUExSegmentControl/EUExSegmentControl-Prefix.pch";
 				ONLY_ACTIVE_ARCH = NO;
@@ -328,9 +290,13 @@
 		3CF52FC61A7F0947008F29C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/uexSegmentControl/";
 				DSTROOT = /tmp/EUExSegmentControl.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EUExSegmentControl",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/EUExSegmentControl/EUExSegmentControl-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";

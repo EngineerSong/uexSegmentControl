@@ -186,7 +186,7 @@
         else if (self.tag == 0)
         {
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
+            NSNumber *maxShow = [user objectForKey:@"maxShow"];
             if (views1.count > [maxShow intValue] -1) {
                 NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
                 UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -226,7 +226,7 @@
         }
         else if (self.tag == 0) {
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
+            NSNumber *maxShow = [user objectForKey:@"maxShow"];
 
             if (views1.count > [maxShow intValue] -1) {
                 NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];

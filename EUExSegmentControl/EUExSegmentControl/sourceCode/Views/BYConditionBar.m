@@ -76,14 +76,12 @@
             UIButton *button = [self makePropertyButtonWithTitle:_lists[i]];
 //            [dataDictionary setObject:_lists[i] forKey:[NSString stringWithFormat:@"%d",i]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString *index = [userDefaults objectForKey:@"segmentIndex"];
-            if ([index integerValue]) {
-                if ( i == [index integerValue] ) {
-                    button.selected = YES;
-                    self.select_button = button;
-                    first_buttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:self.frame.size.height Text:_lists[i]].size.width;
-                    first_buttonX =  button.frame.origin.x;
-                }
+            NSNumber *index = [userDefaults objectForKey:@"segmentIndex"];
+            if (index && i == [index integerValue] ) {
+                button.selected = YES;
+                self.select_button = button;
+                first_buttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:self.frame.size.height Text:_lists[i]].size.width;
+                first_buttonX =  button.frame.origin.x;
             }else{
                 if (i == 0) {
                     button.selected = YES;
@@ -132,14 +130,10 @@
 }
 
 //外部调用
--(void)viewSelectWithOption:(NSString *)str{
-    
-    if(str){
-        if ([str integerValue] < self.buttons_lists.count) {
-            [self viewSelectWithButton:[self.buttons_lists objectAtIndex:[str integerValue]]];
-        }
+- (void)selectButtonWithIndex:(NSInteger)index{
+    if (index >= 0 && index < self.buttons_lists.count) {
+        [self viewSelectWithButton:self.buttons_lists[index]];
     }
-    
 }
 
 //内部调用
