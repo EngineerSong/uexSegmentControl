@@ -31,7 +31,7 @@
 
 -(void)open:(NSMutableArray *)inArguments{
 
-    NSInteger x= 0, y = 0, width = 0, height = 0;
+    NSInteger x= 0, y = 0, width = 0, height = BYScreenHeight;
     NSString *isExpand =@"1";
     NSString *btnIconUp = nil;
     NSString *btnIconDown = nil;
@@ -122,7 +122,7 @@
     [userDefaults synchronize];
     
 
-    self.conditionBar = [[BYConditionBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, height > 0 ? height : conditionScrollH)];
+    self.conditionBar = [[BYConditionBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, conditionScrollH)];
 
     [[self.webViewEngine webView] addSubview:self.conditionBar];
     
@@ -144,14 +144,14 @@
     };
     
     
-    self.selection_details = [[BYSelectionDetails alloc] initWithFrame:CGRectMake(0, BYScreenHeight, BYScreenWidth, BYScreenHeight-conditionScrollH)];
+    self.selection_details = [[BYSelectionDetails alloc] initWithFrame:CGRectMake(0, BYScreenHeight, BYScreenWidth, height - conditionScrollH)];
     [[self.webViewEngine webView] addSubview:self.selection_details];
     
-    self.selection_newBar = [[BYSelectNewBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, height > 0 ? height : conditionScrollH)];
+    self.selection_newBar = [[BYSelectNewBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, conditionScrollH)];
     [[self.webViewEngine webView] addSubview:self.selection_newBar];
     
     if ([isExpand integerValue] == 1) {
-        self.arrow = [[SelectionButton alloc] initWithFrame:CGRectMake(BYScreenWidth-arrow_width, y, arrow_width, height > 0 ? height : conditionScrollH)];
+        self.arrow = [[SelectionButton alloc] initWithFrame:CGRectMake(BYScreenWidth-arrow_width, y, arrow_width, conditionScrollH)];
         self.arrow.Detail =self.selection_details;
         self.arrow.Newbar =self.selection_newBar;
         [[self.webViewEngine webView] addSubview:self.arrow];
