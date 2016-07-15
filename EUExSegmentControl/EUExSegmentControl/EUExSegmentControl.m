@@ -206,7 +206,7 @@
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSArray *udKeys = @[@"showData",@"allData",@"expandOpenIcon",@"expandCloseIcon",@"showedLable",@"addLable",@"top",@"segmentIndex"];
     [udKeys enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [ud setValue:nil forKey:obj];
+        [ud setObject:nil forKey:obj];
     }];
 
 }
