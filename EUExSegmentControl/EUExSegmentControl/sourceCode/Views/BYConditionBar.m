@@ -172,7 +172,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"click_conditionBarItem"
                                                         object:button
-                                                      userInfo:@{@"title":button.titleLabel.text}];
+                                                      userInfo:@{@"title":button.titleLabel.text?:@""}];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"click_conditionBarItem" object:nil];
     
@@ -236,7 +236,7 @@
     });
     [[NSNotificationCenter defaultCenter] postNotificationName:@"click_conditionBarItem"
                                                         object:button
-                                                      userInfo:@{@"title":button.titleLabel.text}];
+                                                      userInfo:@{@"title":button.titleLabel.text?:@""}];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"click_conditionBarItem" object:nil];
 }

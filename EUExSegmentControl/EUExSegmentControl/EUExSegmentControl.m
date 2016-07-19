@@ -176,9 +176,10 @@
     if ([dic[@"isCallBack"] integerValue] != 0) {
         self.skipItemClickCallback = YES;
     };
-    [self.conditionBar selectButtonWithIndex:idxNum.integerValue];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:idxNum  forKey:@"segmentIndex"];
+    [self.conditionBar selectButtonWithIndex:idxNum.integerValue];
 }
 
 -(void)close:(NSMutableArray *)inArguments{
