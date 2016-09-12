@@ -51,8 +51,14 @@
         self.delete_btn.layer.cornerRadius = self.delete_btn.frame.size.width/2;
         self.delete_btn.hidden = YES;
 //        self.delete_btn.backgroundColor = Color_gray;
-        self.delete_btn.backgroundColor = [UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] ;
-
+        //self.delete_btn.backgroundColor = [UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] ;
+        if ([user objectForKey:@"expandCloseIcon"] != nil) {
+            NSString *btnIconUp = [NSString stringWithFormat:@"%@",[user objectForKey:@"expandCloseIcon"]];
+            [self.delete_btn setImage:[UIImage imageWithContentsOfFile:btnIconUp] forState:0];
+        }
+        else{
+            [self.delete_btn setImage:[self getImageFromLocalFile:@"uexSegmentControl/delete"] forState:0];
+        }
         [self addSubview:self.delete_btn];
     }
 

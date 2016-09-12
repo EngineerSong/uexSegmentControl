@@ -12,7 +12,7 @@
 
 @interface EUExSegmentControl()
 @property (nonatomic , assign) BOOL skipItemClickCallback;
-
+@property BOOL isOpened;
 @end
 
 
@@ -22,7 +22,7 @@
 - (instancetype)initWithWebViewEngine:(id<AppCanWebViewEngineObject>)engine{
     self = [super initWithWebViewEngine:engine];
     if (self) {
-        
+        _isOpened = NO;
     }
     return self;
 }
@@ -30,7 +30,9 @@
 
 
 -(void)open:(NSMutableArray *)inArguments{
-
+    if (_isOpened) {
+        return;
+    }
     NSInteger x= 0, y = 0, width = 0, height = BYScreenHeight;
     NSString *isExpand =@"1";
     NSString *btnIconUp = nil;
@@ -156,7 +158,7 @@
         self.arrow.Newbar =self.selection_newBar;
         [[self.webViewEngine webView] addSubview:self.arrow];
     }
-    
+    _isOpened = YES;
 }
 
 
@@ -184,6 +186,7 @@
 
 -(void)close:(NSMutableArray *)inArguments{
     [self clean];
+     _isOpened = NO;
 }
 
 -(void)clean{
