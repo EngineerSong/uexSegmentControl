@@ -13,17 +13,17 @@
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"png"]];
 }
 -(void)makeSelectionViewWithTitle:(NSString *)title
-{    
+{
     self.gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panView:)];
     self.longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress)];
     self.longGesture.minimumPressDuration = 1;
     self.longGesture.allowableMovement = 20;
     self.longGesture.numberOfTouchesRequired = 1;
     [self addGestureRecognizer:self.longGesture];
-//    栏目第一个初始化颜色为红色
+    //    栏目第一个初始化颜色为红色
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString *firstTitle = [NSString stringWithFormat:@"%@",[[user objectForKey:@"showData"] objectAtIndex:0]];
-
+    
     self.isEqualFirst = [title isEqualToString:firstTitle];
     [self setTitle:title forState:0];
     [self setTitleColor:Color_gray forState:0];
@@ -36,9 +36,9 @@
     }
     
     self.layer.cornerRadius = 14;
-//    self.layer.borderColor = [border_gray CGColor];
+    //    self.layer.borderColor = [border_gray CGColor];
     self.layer.borderColor = [[UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] CGColor];
-
+    
     self.layer.borderWidth = 0.5;
     self.backgroundColor = [UIColor whiteColor];
     
@@ -50,12 +50,18 @@
         [self.delete_btn setImage:[self getImageFromLocalFile:@"uexSegmentControl/delete"] forState:0];
         self.delete_btn.layer.cornerRadius = self.delete_btn.frame.size.width/2;
         self.delete_btn.hidden = YES;
-//        self.delete_btn.backgroundColor = Color_gray;
-        self.delete_btn.backgroundColor = [UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] ;
-
+        //        self.delete_btn.backgroundColor = Color_gray;
+        //self.delete_btn.backgroundColor = [UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] ;
+        if ([user objectForKey:@"expandCloseIcon"] != nil) {
+            NSString *btnIconUp = [NSString stringWithFormat:@"%@",[user objectForKey:@"expandCloseIcon"]];
+            [self.delete_btn setImage:[UIImage imageWithContentsOfFile:btnIconUp] forState:0];
+        }
+        else{
+            [self.delete_btn setImage:[self getImageFromLocalFile:@"uexSegmentControl/delete"] forState:0];
+        }
         [self addSubview:self.delete_btn];
     }
-
+    
     //屏蔽按钮
     self.hid_btn = [[UIButton alloc] initWithFrame:self.bounds];
     self.hid_btn.tag = 0;
@@ -64,23 +70,23 @@
                      action:@selector(operationWithHidBtn)
            forControlEvents:1 << 6];
     [self addSubview:self.hid_btn];
-
+    
     
     [self addTarget:self
              action:@selector(operationWithoutHidBtn)
    forControlEvents:1<<6];
     
-    __weak typeof(self) unself = self;
+    __weak typeof(self) weakSelf = self;
     self.operations = ^(NSString *notiName, NSString *notiTitle, int notiIndex){
-        
+         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setObject:notiName forKey:@"noti_name"];
         [dic setObject:notiTitle forKey:@"noti_title"];
         [dic setObject:[NSNumber numberWithInt:notiIndex] forKey:@"noti_index"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"operations_from_selectionView"
-                                                            object:unself
+                                                            object:strongSelf
                                                           userInfo:dic];
-        [[NSNotificationCenter defaultCenter] removeObserver:unself name:@"operations_from_selectionView" object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:strongSelf name:@"operations_from_selectionView" object:nil];
     };
     
     
@@ -162,7 +168,7 @@
  的点击事件
  
  self.tag  1代表位于上方
-           0代表位于下方
+ 0代表位于下方
  
  1区域点击: 通知conditionBar选择
  这个item的title的区域
@@ -186,7 +192,7 @@
         else if (self.tag == 0)
         {
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
+            NSNumber *maxShow = [user objectForKey:@"maxShow"];
             if (views1.count > [maxShow intValue] -1) {
                 NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
                 UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -195,14 +201,14 @@
             }
             
             [self changeView2toView1];
-          
+            
         }
     }
 }
 
 /******************************
  
- 点击“排序”后 hid_btn被隐藏 
+ 点击“排序”后 hid_btn被隐藏
  self的 target的点击事件被激活
  
  self.tag  1代表位于上方
@@ -226,8 +232,8 @@
         }
         else if (self.tag == 0) {
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            NSString *maxShow = [NSString stringWithFormat:@"%@",[user objectForKey:@"maxShow"]];
-
+            NSNumber *maxShow = [user objectForKey:@"maxShow"];
+            
             if (views1.count > [maxShow intValue] -1) {
                 NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
                 UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -239,7 +245,7 @@
             [self addGestureRecognizer:self.gesture];
             [self changeView2toView1];
             
-
+            
         }
     }
 }
@@ -288,14 +294,14 @@
             }
             else
             {
-               [self changeView1toView2];
+                [self changeView1toView2];
             }
         }
             break;
         case UIGestureRecognizerStateEnded:
         {
-             [self animationActionFinal];
-//            获取移动后的位置index
+            [self animationActionFinal];
+            //            获取移动后的位置index
             BOOL isInArea1 = [self whetherInAreaWithArray:views1 Point:center];
             
             if (isInArea1) {
@@ -305,11 +311,11 @@
                 index = (index == 0)? 1:index;
                 NSLog(@"%ld",(long)index);
                 self.operations(@"move_itemToLast",self.titleLabel.text,(int)index);
-               }
-             
             }
             
-           
+        }
+            
+            
             break;
         default:
             break;
@@ -354,9 +360,9 @@
  
  ******************************/
 - (BOOL)whetherInAreaWithArray:(NSMutableArray *)array Point:(CGPoint)point{
-    int row = (array.count%4 == 0)? 4 : array.count%4;
-    int column =  (int)(array.count-1)/4+1;
-    if ((point.x > 0 && point.x <=BYScreenWidth &&point.y > 0 && point.y <= 45*(column-1)+20 )||
+    int row = (array.count%4 == 0)? 4 : array.count%4;//列
+    int column =  (int)(array.count-1)/4+1;//行
+    if ((point.x > 0 && point.x <=BYScreenWidth &&point.y > 0 && point.y <= 45*(column-1)+20 )||//45为self的高度
         (point.x > 0 && point.x <= (row*(20+view_width)+20 )&& point.y > 45*(column -1)+20 && point.y <= 45 * column+20))
     {
         return YES;

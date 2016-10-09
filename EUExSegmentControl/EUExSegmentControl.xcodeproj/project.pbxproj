@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CDA84FD1A806ED3001B6539 /* BYConditionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F21A806ED3001B6539 /* BYConditionBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA84FE1A806ED3001B6539 /* BYSelectionDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F41A806ED3001B6539 /* BYSelectionDetails.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA84FF1A806ED3001B6539 /* BYSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F61A806ED3001B6539 /* BYSelectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA85001A806ED3001B6539 /* BYSelectNewBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F81A806ED3001B6539 /* BYSelectNewBar.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		3CDA85011A806ED3001B6539 /* SelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84FC1A806ED3001B6539 /* SelectionButton.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3CDA84FD1A806ED3001B6539 /* BYConditionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F21A806ED3001B6539 /* BYConditionBar.m */; };
+		3CDA84FE1A806ED3001B6539 /* BYSelectionDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F41A806ED3001B6539 /* BYSelectionDetails.m */; };
+		3CDA84FF1A806ED3001B6539 /* BYSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F61A806ED3001B6539 /* BYSelectionView.m */; };
+		3CDA85001A806ED3001B6539 /* BYSelectNewBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84F81A806ED3001B6539 /* BYSelectNewBar.m */; };
+		3CDA85011A806ED3001B6539 /* SelectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA84FC1A806ED3001B6539 /* SelectionButton.m */; };
 		3CF52FA51A7F0946008F29C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF52FA41A7F0946008F29C1 /* Foundation.framework */; };
 		3CF52FAC1A7F0946008F29C1 /* EUExSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF52FAB1A7F0946008F29C1 /* EUExSegmentControl.m */; };
 /* End PBXBuildFile section */
@@ -313,7 +313,7 @@
 		3CF52FC51A7F0947008F29C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/uexSegmentControl/";
 				DSTROOT = /tmp/EUExSegmentControl.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -328,7 +328,7 @@
 		3CF52FC61A7F0947008F29C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/uexSegmentControl/";
 				DSTROOT = /tmp/EUExSegmentControl.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

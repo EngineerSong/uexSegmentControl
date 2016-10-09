@@ -55,7 +55,7 @@
 -(void)ArrowClick{
     self.Newbar.hidden = (self.Detail.frame.origin.y>=BYScreenHeight)?NO:YES;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    打开详情栏
+    //    打开详情栏
     if (!changeImage) {
         if ([userDefaults objectForKey:@"expandCloseIcon"] != nil) {
             NSString *btnIConDown = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"expandCloseIcon"]];
@@ -79,10 +79,10 @@
         }
         else
         {
-                [UIView animateWithDuration:arrow_animation_time animations:^{
-                    CGAffineTransform rotation = self.imageView.transform;
-                    self.imageView.transform = CGAffineTransformRotate(rotation,M_PI);
-                }];
+            [UIView animateWithDuration:arrow_animation_time animations:^{
+                CGAffineTransform rotation = self.imageView.transform;
+                self.imageView.transform = CGAffineTransformRotate(rotation,M_PI);
+            }];
         }
         changeImage = NO;
     }

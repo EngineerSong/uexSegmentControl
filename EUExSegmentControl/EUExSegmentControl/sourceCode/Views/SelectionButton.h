@@ -14,11 +14,11 @@
 @class BYConditionBar;
 
 @interface SelectionButton : UIButton
-@property (nonatomic,strong) BYSelectionDetails *Detail;
-@property (nonatomic,strong) BYSelectNewBar *Newbar;
-@property (nonatomic,strong) BYSelectionView *selectionView;
-@property (nonatomic,strong) BYConditionBar *conditonBar;
+@property (nonatomic,weak) BYSelectionDetails *Detail;
+@property (nonatomic,weak) BYSelectNewBar *Newbar;
+@property (nonatomic,weak) BYSelectionView *selectionView;
+@property (nonatomic,weak) BYConditionBar *conditonBar;
 @property (nonatomic,assign) BOOL changeImage;
- 
+
 
 @end
