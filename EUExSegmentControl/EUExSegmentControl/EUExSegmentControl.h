@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
 #import "EUExBase.h"
+=======
+#import <AppCanKit/AppCanKit.h>
+>>>>>>> origin/dev-4.0
 #import "BYConditionBar.h"
 #import "SelectionButton.h"
 #import "BYSelectionDetails.h"

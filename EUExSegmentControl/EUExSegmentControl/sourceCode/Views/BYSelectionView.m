@@ -50,7 +50,11 @@
         [self.delete_btn setImage:[self getImageFromLocalFile:@"uexSegmentControl/delete"] forState:0];
         self.delete_btn.layer.cornerRadius = self.delete_btn.frame.size.width/2;
         self.delete_btn.hidden = YES;
+<<<<<<< HEAD
         //        self.delete_btn.backgroundColor = Color_gray;
+=======
+//        self.delete_btn.backgroundColor = Color_gray;
+>>>>>>> origin/dev-4.0
         //self.delete_btn.backgroundColor = [UIColor colorWithRed:146.0/255 green:146.0/255 blue:146.0/255 alpha:0.4] ;
         if ([user objectForKey:@"expandCloseIcon"] != nil) {
             NSString *btnIconUp = [NSString stringWithFormat:@"%@",[user objectForKey:@"expandCloseIcon"]];
@@ -233,7 +237,11 @@
         else if (self.tag == 0) {
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             NSNumber *maxShow = [user objectForKey:@"maxShow"];
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> origin/dev-4.0
             if (views1.count > [maxShow intValue] -1) {
                 NSString *string = [NSString stringWithFormat:@"最多添加%@个",maxShow];
                 UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:string delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];

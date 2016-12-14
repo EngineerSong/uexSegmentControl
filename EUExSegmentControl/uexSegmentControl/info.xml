@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
-    <plugin
-        uexName="uexSegmentControl" version="3.0.5" build="5">
-        <info>5:增加容器支持</info>
-        <build>4:修复BUG,和安卓统一参数</build>
-        <build>3:修复onItemClick接口回调参数与文档及安卓不一致的BUG</build>
-        <build>2:按要求修改结构布局</build>
-        <build>1:修改资源图片不显示问题，适配iOS5以上的版本</build>
-        <build>0:uexSegmentControl插件实现分段控制器功能</build>
+    <plugin uexName="uexSegmentControl" version="4.0.0" build="0">
+        <info>0:uexSegmentControl适配4.0引擎</info>
     </plugin>
 </uexplugins>

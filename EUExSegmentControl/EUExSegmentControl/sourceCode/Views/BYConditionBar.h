@@ -13,7 +13,11 @@
 typedef void (^uexSegmentControlCallBackBlock)(NSMutableDictionary *callBackData);
 typedef void (^uexSegmentControlDataChangeBlock)(NSMutableDictionary *dataChangeData);
 @interface BYConditionBar : UIScrollView
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> origin/dev-4.0
 @property (nonatomic, copy) uexSegmentControlCallBackBlock callBackBlock;//回调
 @property (nonatomic, copy) uexSegmentControlDataChangeBlock  dataChangeBlock;
 @property (nonatomic, assign) CGFloat  deleatWith;
