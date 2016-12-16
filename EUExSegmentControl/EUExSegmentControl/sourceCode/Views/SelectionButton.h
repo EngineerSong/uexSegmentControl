@@ -19,6 +19,6 @@
 @property (nonatomic,weak) BYSelectionView *selectionView;
 @property (nonatomic,weak) BYConditionBar *conditonBar;
 @property (nonatomic,assign) BOOL changeImage;
-
+ 
 
 @end

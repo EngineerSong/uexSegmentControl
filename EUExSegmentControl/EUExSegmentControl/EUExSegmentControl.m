@@ -7,12 +7,7 @@
 //
 
 #import "EUExSegmentControl.h"
-<<<<<<< HEAD
-#import "EUtility.h"
-#import "JSON.h"
-=======
 #import <AppCanKit/ACEXTScope.h>
->>>>>>> origin/dev-4.0
 
 
 @interface EUExSegmentControl()
@@ -24,24 +19,16 @@
 @implementation EUExSegmentControl
 
 
-<<<<<<< HEAD
--(id)initWithBrwView:(EBrowserView *)eInBrwView{
-    if (self = [super initWithBrwView:eInBrwView]) {
-=======
 - (instancetype)initWithWebViewEngine:(id<AppCanWebViewEngineObject>)engine{
     self = [super initWithWebViewEngine:engine];
     if (self) {
->>>>>>> origin/dev-4.0
         _isOpened = NO;
     }
     return self;
 }
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev-4.0
 -(void)open:(NSMutableArray *)inArguments{
     if (_isOpened) {
         return;
@@ -53,20 +40,9 @@
     NSString *subLabelText = nil;
     NSString *morLabelText = nil;
     NSNumber *maxShow = nil;
-<<<<<<< HEAD
-    NSInteger mode = 0;
-    NSInteger containerIndex = 0;
-    NSString *containerID = nil;
-    
-    if(inArguments.count<1){
-        return;
-    }
-    NSDictionary *dict = [[inArguments objectAtIndex:0] JSONValue];
-=======
     
     
     ACArgsUnpack(NSDictionary *dict) = inArguments;
->>>>>>> origin/dev-4.0
     NSDictionary *dic = [dict objectForKey:@"dataInfo"];
     if ([dic objectForKey:@"expandOpenIcon"] ) {
         btnIconUp = [self absPath:[dic objectForKey:@"expandOpenIcon"]];
@@ -84,11 +60,7 @@
         isExpand = [dic objectForKey:@"isExpand"];
     }
     if ([dic objectForKey:@"maxShow"]) {
-<<<<<<< HEAD
-        maxShow = @([[dic objectForKey:@"maxShow"] intValue]);
-=======
         maxShow = numberArg([dic objectForKey:@"maxShow"]);
->>>>>>> origin/dev-4.0
     }
     
     NSMutableArray *array1 = [[NSMutableArray alloc]init];
@@ -132,63 +104,6 @@
             }
         }
     }
-<<<<<<< HEAD
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:array1 forKey:@"showData"];
-    [userDefaults setObject:array2 forKey:@"allData"];
-    [userDefaults setObject:btnIconUp forKey:@"expandOpenIcon"];
-    [userDefaults setObject:btnIconDown forKey:@"expandCloseIcon"];
-    [userDefaults setObject:subLabelText forKey:@"showedLable"];
-    [userDefaults setObject:morLabelText forKey:@"addLable"];
-    [userDefaults setObject:maxShow forKey:@"maxShow"];
-    
-    x = [[dict objectForKey:@"left"] integerValue] ;
-    y = [[dict objectForKey:@"top"] integerValue];
-    width = [[dict objectForKey:@"width"] integerValue];
-    if ([dict objectForKey:@"height"] ) {
-        height = [[dict objectForKey:@"height"] integerValue];
-    }
-    if ([dict objectForKey:@"mode"]) {
-        mode= [[dict objectForKey:@"mode"] integerValue];
-    }
-    if ([dict objectForKey:@"containerID"]) {
-         containerID = [dict objectForKey:@"containerID"] ;
-    }
-    if ([dict objectForKey:@"containerIndex"]) {
-         containerIndex = [[dict objectForKey:@"containerIndex"] integerValue];
-    }
-   
-    [userDefaults setObject:[NSString stringWithFormat:@"%ld",(long)y] forKey:@"top"];
-    [userDefaults synchronize];
-    
-    self.conditionBar = [[BYConditionBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, conditionScrollH)];
-    if (mode == 0) {
-        [EUtility brwView:self.meBrwView addSubview:self.conditionBar];
-    }else{
-        [EUtility brwView:self.meBrwView addSubviewToContainer:self.conditionBar WithIndex:containerIndex andIndentifier:containerID];
-    }
-    
-    
-    
-     __weak typeof(self) weakSelf = self;
-    self.conditionBar.callBackBlock = ^(NSMutableDictionary *callBackData){
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        if (!strongSelf.skipItemClickCallback) {
-            NSString *jsonStr = [NSString stringWithFormat:@"if(uexSegmentControl.onItemClick != null){uexSegmentControl.onItemClick(%@);}",[callBackData JSONFragment]];
-            [EUtility brwView:strongSelf.meBrwView evaluateScript:jsonStr];
-        }
-        strongSelf.skipItemClickCallback = NO;
-    };
-    self.conditionBar.dataChangeBlock = ^(NSMutableDictionary *dataChangeData){
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (dataChangeData) {
-            NSString *jsonStr = [NSString stringWithFormat:@"if(uexSegmentControl.onDataChange !=null){uexSegmentControl.onDataChange(%@)}",[dataChangeData JSONFragment]];
-            [EUtility brwView:strongSelf.meBrwView evaluateScript:jsonStr];
-        }
-        
-=======
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:array1 forKey:@"showData"];
@@ -228,45 +143,20 @@
             [self.webViewEngine callbackWithFunctionKeyPath:@"uexSegmentControl.onDataChange" arguments:ACArgsPack(dataChangeData)];
         }
 
->>>>>>> origin/dev-4.0
     };
     
     
     self.selection_details = [[BYSelectionDetails alloc] initWithFrame:CGRectMake(0, BYScreenHeight, BYScreenWidth, height - conditionScrollH)];
-<<<<<<< HEAD
-   
-    if (mode == 0) {
-        [EUtility brwView:self.meBrwView addSubview:self.selection_details];
-    }else{
-        [EUtility brwView:self.meBrwView addSubviewToContainer:self.selection_details WithIndex:containerIndex andIndentifier:containerID];
-    }
-=======
     [[self.webViewEngine webView] addSubview:self.selection_details];
     
     self.selection_newBar = [[BYSelectNewBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, conditionScrollH)];
     [[self.webViewEngine webView] addSubview:self.selection_newBar];
->>>>>>> origin/dev-4.0
     
-    self.selection_newBar = [[BYSelectNewBar alloc] initWithFrame:CGRectMake(x, y, BYScreenWidth, conditionScrollH)];
-    if (mode == 0) {
-        [EUtility brwView:self.meBrwView addSubview:self.selection_newBar];
-    }else{
-        [EUtility brwView:self.meBrwView addSubviewToContainer:self.selection_newBar WithIndex:containerIndex andIndentifier:containerID];
-    }
     if ([isExpand integerValue] == 1) {
         self.arrow = [[SelectionButton alloc] initWithFrame:CGRectMake(BYScreenWidth-arrow_width, y, arrow_width, conditionScrollH)];
         self.arrow.Detail =self.selection_details;
         self.arrow.Newbar =self.selection_newBar;
-<<<<<<< HEAD
-        if (mode == 0) {
-           [EUtility brwView:self.meBrwView addSubview:self.arrow];
-        }else{
-            [EUtility brwView:self.meBrwView addSubviewToContainer:self.arrow WithIndex:containerIndex andIndentifier:containerID];
-        }
-        
-=======
         [[self.webViewEngine webView] addSubview:self.arrow];
->>>>>>> origin/dev-4.0
     }
     _isOpened = YES;
 }
@@ -280,22 +170,11 @@
 
 
 -(void)setCurrentItem:(NSMutableArray *)inArguments{
-<<<<<<< HEAD
-    if (inArguments.count <1) {
-        return;
-    }
-    NSDictionary *dic = [[inArguments objectAtIndex:0] JSONValue];
-    NSNumber *idxNum = @([dic[@"index"] intValue]);
-    if (!idxNum) {
-        return;
-    }
-=======
     ACArgsUnpack(NSDictionary *dic) = inArguments;
     NSNumber *idxNum = numberArg(dic[@"index"]);
     if (!idxNum) {
         return;
     }
->>>>>>> origin/dev-4.0
     if ([dic[@"isCallBack"] integerValue] != 0) {
         self.skipItemClickCallback = YES;
     };
@@ -307,11 +186,7 @@
 
 -(void)close:(NSMutableArray *)inArguments{
     [self clean];
-<<<<<<< HEAD
-    _isOpened = NO;
-=======
      _isOpened = NO;
->>>>>>> origin/dev-4.0
 }
 
 -(void)clean{
@@ -337,11 +212,7 @@
     [udKeys enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [ud setObject:nil forKey:obj];
     }];
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> origin/dev-4.0
 }
 
 -(void)dealloc{

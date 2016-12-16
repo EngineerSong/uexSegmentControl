@@ -74,7 +74,7 @@
         
         for (int i =0; i<_lists.count; i++) {
             UIButton *button = [self makePropertyButtonWithTitle:_lists[i]];
-            //            [dataDictionary setObject:_lists[i] forKey:[NSString stringWithFormat:@"%d",i]];
+//            [dataDictionary setObject:_lists[i] forKey:[NSString stringWithFormat:@"%d",i]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSNumber *index = [userDefaults objectForKey:@"segmentIndex"];
             if (index && i == [index integerValue] ) {
@@ -95,13 +95,13 @@
             [self addSubview:button];
         }
         self.contentSize = CGSizeMake(self.max_width+50, self.frame.size.height);
-        //        [self resetFrame];
+//        [self resetFrame];
         NSLog(@"self.frame.size.height   %f",self.frame.size.height);
-         NSLog(@"first_buttonW   %f",first_buttonW);
+        
         self.buttonBg_view = [[UIView alloc] initWithFrame:CGRectMake(first_buttonX - 10 ,(self.frame.size.height-20)/2  ,first_buttonW+20, 20)];
         self.buttonBg_view.backgroundColor = Color_main;
         self.buttonBg_view.layer.cornerRadius = 4;
-        [self insertSubview:self.buttonBg_view atIndex:0];//将新视图放在第index层，index是从底层向上数的下标位置
+        [self insertSubview:self.buttonBg_view atIndex:0];
         
         [self viewSelectWithButton:self.select_button];
         
@@ -149,18 +149,17 @@
     }
     CGFloat animate_time = 0.3;
     [UIView animateWithDuration:animate_time animations:^{
-        NSLog(@"-------------");
-         NSLog(@"button.frame.size.width   %f",button.frame.size.width);
+        
         CGRect buttonBg_view_frame     = self.buttonBg_view.frame;
         buttonBg_view_frame.size.width = button.frame.size.width+20;
         self.buttonBg_view.frame       = buttonBg_view_frame;
-        CGFloat trans_width            = button.frame.origin.x - first_buttonX ;
+        CGFloat trans_width            = button.frame.origin.x-(buttonBg_view_frame.size.width-button.frame.size.width)/2-10 - first_buttonX + 20;
         self.buttonBg_view.transform  = CGAffineTransformMakeTranslation(trans_width, 0);
     }];
     //    点击后button位置调整
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(animate_time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:animate_time animations:^{
-             NSLog(@"+++++++++++++");
+            
             if (button.frame.origin.x > BYScreenWidth -40 -20) {
                 
                 self.contentOffset = CGPointMake(button.frame.origin.x-BYScreenWidth/2 -20, 0);
@@ -182,7 +181,7 @@
     NSString *title = button.titleLabel.text;
     for (int i=0; i< self.lists.count ;i++) {
         if ([title isEqualToString:[self.lists objectAtIndex:i]]) {
-            //            NSLog(@"%@         %d",title,i);
+//            NSLog(@"%@         %d",title,i);
             NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
             [dict setObject:title forKey:@"name"];
             [dict setObject:[NSString stringWithFormat:@"%d",i] forKey:@"index"];
@@ -204,7 +203,6 @@
     }
     CGFloat animate_time = 0.3;
     [UIView animateWithDuration:animate_time animations:^{
-        NSLog(@"我被执行了");
         CGFloat trans_width;
         CGRect buttonBg_view_frame     = self.buttonBg_view.frame;
         buttonBg_view_frame.size.width = button.frame.size.width+20;
@@ -270,54 +268,54 @@
 
 -(void)getOperationsWithNoti:(NSNotification *)noti
 {
-    NSString *noti_name  = [noti.userInfo objectForKey:@"noti_name"];
-    NSString *noti_title = [noti.userInfo objectForKey:@"noti_title"];
-    int noti_index       = [[noti.userInfo objectForKey:@"noti_index"] intValue];
-    if ([noti_name isEqualToString:@"select_itemOfView"]) {
-        //       点击回调到主页
-        NSInteger index = [self findIndexOfListsWithTitle:noti_title];
-        [self viewSelectWithButton:self.buttons_lists[index]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"arrow_change" object:self];
-    }else if ([noti_name isEqualToString:@"add_newItem"]){
-        //       由下到上 点击添加后的回调
-        [self.lists addObject:noti_title];
-        [self addSubview:[self makePropertyButtonWithTitle:noti_title ]];
-        //        添加到字典中
-        [self addTitle:self.lists andIndex:(int)self.lists.count -1];
-        self.contentSize = CGSizeMake(self.max_width+50, self.frame.size.height);
-        if ([[UIDevice currentDevice].systemVersion floatValue] >9.0) {
-            [self resetFrame];
-        }
-        else
-        {
+        NSString *noti_name  = [noti.userInfo objectForKey:@"noti_name"];
+        NSString *noti_title = [noti.userInfo objectForKey:@"noti_title"];
+        int noti_index       = [[noti.userInfo objectForKey:@"noti_index"] intValue];
+        if ([noti_name isEqualToString:@"select_itemOfView"]) {
+            //       点击回调到主页
+            NSInteger index = [self findIndexOfListsWithTitle:noti_title];
+            [self viewSelectWithButton:self.buttons_lists[index]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"arrow_change" object:self];
+        }else if ([noti_name isEqualToString:@"add_newItem"]){
+            //       由下到上 点击添加后的回调
+            [self.lists addObject:noti_title];
+            [self addSubview:[self makePropertyButtonWithTitle:noti_title ]];
+            //        添加到字典中
+            [self addTitle:self.lists andIndex:(int)self.lists.count -1];
+            self.contentSize = CGSizeMake(self.max_width+50, self.frame.size.height);
+            if ([[UIDevice currentDevice].systemVersion floatValue] >9.0) {
+                [self resetFrame];
+            }
+            else
+            {
             [self resetFrames];
+            }
+        }else if ([noti_name isEqualToString:@"remove_item"]){
+            //        删除时
+            [self viewSelectWithButton:self.buttons_lists[0]];
+            [self removeItemWithTitle:noti_title];
+            [self removeTitle:self.lists andIndex:(int)noti_index];
+            if ([[UIDevice currentDevice].systemVersion floatValue] >9.0) {
+                [self resetFrame];
+            }
+            else
+            {
+                [self resetFrames];
+            }
+        }else if ([noti_name isEqualToString:@"switch_position"]){
+            //        编辑时移动位置
+            if ( self.firstIndex == 0) {
+                self.firstIndex = noti_index;
+            }
+            self.listCount = self.lists.count;
+            [self switchPositionWithNotiTitles:noti_title index:noti_index];
+        }else if ([noti_name isEqualToString:@"move_itemToLast"]){
+            [self switchPositionWithNotiTitle:noti_title index:noti_index];
+            //        调换位置时
+            [self moveTitle:self.lists atIndex:self.firstIndex toNext:noti_index];
+            self.firstIndex = 0;
         }
-    }else if ([noti_name isEqualToString:@"remove_item"]){
-        //        删除时
-        [self viewSelectWithButton:self.buttons_lists[0]];
-        [self removeItemWithTitle:noti_title];
-        [self removeTitle:self.lists andIndex:(int)noti_index];
-        if ([[UIDevice currentDevice].systemVersion floatValue] >9.0) {
-            [self resetFrame];
-        }
-        else
-        {
-            [self resetFrames];
-        }
-    }else if ([noti_name isEqualToString:@"switch_position"]){
-        //        编辑时移动位置
-        if ( self.firstIndex == 0) {
-            self.firstIndex = noti_index;
-        }
-        self.listCount = self.lists.count;
-        [self switchPositionWithNotiTitles:noti_title index:noti_index];
-    }else if ([noti_name isEqualToString:@"move_itemToLast"]){
-        [self switchPositionWithNotiTitle:noti_title index:noti_index];
-        //        调换位置时
-        [self moveTitle:self.lists atIndex:self.firstIndex toNext:noti_index];
-        self.firstIndex = 0;
-    }
-    
+ 
 }
 
 - (void)addTitle:(NSMutableArray *)title andIndex:(int)index
@@ -336,7 +334,7 @@
 }
 - (void)moveTitle:(NSMutableArray *)title  atIndex:(int)index  toNext:(int)nextIndex
 {
-    [dataDictionary setObject:title forKey:@"shows"];
+     [dataDictionary setObject:title forKey:@"shows"];
     if (self.dataChangeBlock) {
         self.dataChangeBlock(dataDictionary);
     }
@@ -424,9 +422,9 @@
 {
     self.max_width = 20;
     for (int i = 0; i < self.lists.count; i++) {
-        CGFloat buttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:self.frame.size.height Text:self.lists[i]].size.width ;
-        [[self.buttons_lists objectAtIndex:i] setFrame:CGRectMake(self.max_width, 0, buttonW, self.frame.size.height)];
-        self.max_width  += buttonW + 32;
+            CGFloat buttonW = [self calculateSizeWithFont:16 Width:MAXFLOAT Height:self.frame.size.height Text:self.lists[i]].size.width ;
+            [[self.buttons_lists objectAtIndex:i] setFrame:CGRectMake(self.max_width, 0, buttonW, self.frame.size.height)];
+            self.max_width  += buttonW + 32;
     };
     self.contentSize = CGSizeMake(self.max_width+50, self.frame.size.height);
 }
